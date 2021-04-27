@@ -11,6 +11,9 @@ namespace CrowdMP.Core
         [XmlAttribute("SimulationID")]
         public int id;
 
+        [XmlAttribute("PolicyID")]
+        public int policy_id;
+
         [XmlAttribute]
         public float radius;
         
@@ -40,6 +43,7 @@ namespace CrowdMP.Core
             prefered_speed = 1.4f;
             max_speed = 3.0f;
             max_acceleration = float.MaxValue;
+            policy_id = 0;
         }
 
     }

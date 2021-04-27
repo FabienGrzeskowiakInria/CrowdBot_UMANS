@@ -144,10 +144,10 @@ public class UmansLibraryWrapper
             throw new UmansLibraryException("Failed to send agent positions to the library.");
     }
 
-    public int AddAgent(float x, float y, float radius, float pref_speed, float maxSpeed, float maxAcceleration)
+    public int AddAgent(float x, float y, float radius, float pref_speed, float maxSpeed, float maxAcceleration, int policy_id)
     {
         int newAgentID; bool success;
-        success = UMANS_AddAgent(x, y, radius, pref_speed, maxSpeed, maxAcceleration, 0, out newAgentID, -1);
+        success = UMANS_AddAgent(x, y, radius, pref_speed, maxSpeed, maxAcceleration, policy_id, out newAgentID, -1);
 
         if (!success)
             throw new UmansLibraryException("Failed to add an agent to the library.");

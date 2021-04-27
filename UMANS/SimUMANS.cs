@@ -8,7 +8,7 @@ namespace CrowdMP.Core
     public class SimUMANS : ControlSim
     {
         int ConfigId;
-        string ConfigFile = "./UMANSFiles/examples/default.xml";
+        string ConfigFile = "./UMANSFiles/examples/presets.xml";
 
         int nbr_threads = 8;
 
@@ -36,7 +36,7 @@ namespace CrowdMP.Core
         public void addAgent(Vector3 position, TrialControlSim infos)
         {
             UMANSconfig config = (UMANSconfig)infos;
-            sim.AddAgent(-position.x, position.z, config.radius, config.prefered_speed, config.max_speed, config.max_acceleration);
+            sim.AddAgent(-position.x, position.z, config.radius, config.prefered_speed, config.max_speed, config.max_acceleration, config.policy_id);
 
             nbr_agents++;
             agents = new UmansLibraryWrapper.AgentData[nbr_agents];
@@ -45,7 +45,7 @@ namespace CrowdMP.Core
 
         public void addNonResponsiveAgent(Vector3 position, float radius)
         {
-            sim.AddAgent(-position.x, position.z, radius, 0, 0, 0);       
+            sim.AddAgent(-position.x, position.z, radius, 0, 0, 0, 0);       
             
             nbr_agents++;
             agents = new UmansLibraryWrapper.AgentData[nbr_agents];
@@ -140,5 +140,7 @@ namespace CrowdMP.Core
             sim.SetAgentGoal(id, -position.x-goal.x, position.z+goal.z);
 
         }
+
+        
     }
 }

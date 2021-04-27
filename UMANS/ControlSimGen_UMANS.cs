@@ -13,6 +13,8 @@ namespace CrowdMP.Core
         public float max_speed = 3.0f;
         public float max_acceleration = float.MaxValue;
 
+        public int policy_id = 0;
+
         [System.Serializable]
         public class SpawnerParams
         {
@@ -20,6 +22,7 @@ namespace CrowdMP.Core
             public float prefered_speed_rand;
             public float max_speed_rand;
             public float max_acceleration_rand;
+            public int policy_id_rand = -1;
         }
 
         [Header("Spawner Parameters")]
@@ -32,7 +35,7 @@ namespace CrowdMP.Core
             sim.prefered_speed = prefered_speed;
             sim.max_speed = max_speed;
             sim.max_acceleration = max_acceleration;
-
+            sim.policy_id = policy_id;
             return sim;
         }
 
@@ -46,6 +49,15 @@ namespace CrowdMP.Core
             csg.prefered_speed = prefered_speed + Random.Range(-randomness.prefered_speed_rand, randomness.prefered_speed_rand);
             csg.max_acceleration = max_acceleration + Random.Range(-randomness.max_acceleration_rand, randomness.max_acceleration_rand);          
             
+            if(randomness.policy_id_rand > 0)
+            {
+                csg.policy_id = (int)(Random.Range(0,randomness.policy_id_rand));
+            }
+            else
+            {
+                csg.policy_id = policy_id;
+            }
+
             return csg;
         }
     }
